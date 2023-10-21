@@ -1,7 +1,28 @@
-const UserRepository = require('../repository')
+const UserRepository = require('../repository/user.repository')
 
-export const UserService = {
-    getAllUsers : async () => {
+class UserService {
+    async createUser (data) {
+        try {
+            const user = await UserRepository.createUser(data);
+            return user;
+            console.log('service', data)
+        }
+        catch (error) {
+            throw new Error('Could not create the user')
+        }
+    };
+    async getUserById (userId) {
+        try {
+            const user = await UserRepository.getUserById(userId); 
+            if (user) { // Si el usuario existe, devuelve el usuario
+                return user;
+            }
+        }
+        catch (error) {
+            throw new Error('User not found');
+        }
+    };
+    async getAllUsers () {
         try {
             const users = await UserRepository.getAllUsers();
             if (users.length > 0) {
@@ -9,7 +30,36 @@ export const UserService = {
             }
         }
         catch (error) {
-            throw error
+            throw new Error('Have not found any user, try later');
         }
-    }
+    };
+    async updateUser (userId, data) {
+        try {
+            const user = await UserRepository.getUserById(userId); 
+            if (user) { // Si el usuario existe, entonces...
+                const updated = await UserRepository.updateUser(userId, data); 
+                return updated;
+            } else {
+                throw new Error('User not found');
+            }
+        }
+        catch (error) {
+            throw new Error('Could not update user information');
+        }
+    };
+    async deleteUser (userId) {
+        try {
+            const user = await UserRepository.getUserById(userId); 
+            if (user) { // Si el usuario existe...
+                await UserRepository.deleteUser(userId); 
+            } else {
+                throw new Error('User not found');
+            }
+        }
+        catch (error) {
+            throw new Error('Could not delete user');
+        }
+    };
 };
+
+module.exports = UserService;

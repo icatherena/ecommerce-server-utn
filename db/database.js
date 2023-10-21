@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 
 require('dotenv').config();
 
@@ -9,15 +9,8 @@ const options = {
     useUnifiedTopology: true,
 };
 
-const client = new MongoClient(db, options);
-
-export const connectDB = async () => {
-    try {
-        await client.connect();
-        console.info('Connected to DB');
-        return client.db();
-    } catch (error) {
-        console.log('Error connecting to DB: ', error);
-        throw error;
-    }
+const connectDB = () => {
+    return mongoose.connect(db, options);
 }
+
+module.exports = connectDB;
