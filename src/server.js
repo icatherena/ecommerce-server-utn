@@ -1,9 +1,8 @@
 const express = require('express');
-const { Router } = require('express');
 //const connectDB = require('../db/database');
-const { default: mongoose } = require('mongoose');
+const mongoose = require('mongoose');
 
-const router = Router();
+const router = require('./router/index');
 
 require('dotenv').config();
 
@@ -11,6 +10,7 @@ const app = express();
 
 const db = process.env.MONGODB_URI;
 const port = process.env.PORT;
+
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -36,5 +36,3 @@ const startServer = async () => {
 }
 
 startServer();
-
-module.exports = router;

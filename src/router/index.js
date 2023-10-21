@@ -8,6 +8,4 @@ const router = Router();
 //router.use('/auth', authRouter);
 router.use('/user', userRouter);
 
-module.exports = {
-    router
-}
+module.exports = router;

@@ -3,9 +3,9 @@ const UserRepository = require('../repository/user.repository')
 class UserService {
     async createUser (data) {
         try {
-            const user = await UserRepository.createUser(data);
-            return user;
+            const user = await createUser(data);
             console.log('service', data)
+            return user;
         }
         catch (error) {
             throw new Error('Could not create the user')

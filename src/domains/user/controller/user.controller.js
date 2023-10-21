@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const UserService = require("../service/user.service");
 const User = require("../model/user.model");
+//const User = require("../model/user.model");
 
 const userRouter = Router();
 
@@ -19,20 +20,18 @@ userRouter.get('/userId', async (req, res) => {
 
 // Obtener todos los usuarios
 userRouter.get('/', async (req, res) => {
-    const users = await UserService.getAllUsers();
+    const users = await User.find({})
+    /* const users = await UserService.getAllUsers(); */
     return res.status(200).json(users);
-    /* const users = await User.find({})
-    res.status(200).json(users) */
 });
 
 // Crear un usuario - SignUp
 userRouter.post('/', async (req, res) => {
     const { data } = req.body;
-    const user = await UserService.createUser(data);
+    /* const user = await UserService.createUser(data) */
+    const user = await User.create(data);
     console.log('controller', data)
     return res.status(200).json(user);
-    /* const user = await User.create(data)
-    res.status(200).json(user) */
 });
 
 // Modificar datos del usuario que esta actualmente logueado
@@ -50,4 +49,6 @@ userRouter.delete('/me', async (req, res) => {
     return res.status(200).json('User correctly deleted');
 });
 
-module.exports = userRouter;
+module.exports = {
+    userRouter
+};
