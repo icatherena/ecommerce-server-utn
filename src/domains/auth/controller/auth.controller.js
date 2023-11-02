@@ -3,11 +3,7 @@ const User = require('../../user/model/user.model');
 
 const bcrypt = require('bcrypt');
 
-module.exports.authRouter = Router();
-
-const authService = new AuthService(
-    new UserRepository(db)
-)
+const authRouter = Router();
 
 // Crear usuario
 authRouter.post('/signup', async (req, res) => {
@@ -76,3 +72,5 @@ authRouter.post('/signin', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 })
+
+module.exports = { authRouter };
