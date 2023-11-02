@@ -2,8 +2,12 @@ const { Router } = require("express");
 const User = require('../../user/model/user.model');
 
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const authRouter = Router();
+
+require('dotenv').config();
+const secretKey = process.env.TOKEN_SECRET;
 
 // Crear usuario
 authRouter.post('/signup', async (req, res) => {
