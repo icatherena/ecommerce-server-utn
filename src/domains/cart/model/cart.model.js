@@ -5,9 +5,11 @@ const Schema = mongoose.Schema;
 const productSchema = require('../../product/model/product.model');
 
 const itemSchema = new Schema({
-    product: 
-        productSchema
-    ,
+    product: {
+        //productSchema
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    },
     quantity: {
         type: Number,
         required: true,

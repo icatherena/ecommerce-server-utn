@@ -10,7 +10,8 @@ productRouter.get('/', async (req, res) => {
             return res.status(200).json(products);
         }
     } catch (error) {
-        throw Error('Have not found any products. Try again later!');
+        console.log(error);
+        res.status(500).json({ message: 'Have not found any products. Try again later!'});
     }
 });
 
@@ -38,7 +39,8 @@ productRouter.post('/', async (req, res) => {
         console.log('product created: ', product);
         return res.status(200).json(product);
     } catch (error) {
-        throw Error('Could not create new product');
+        console.log(error);
+        res.status(500).json({ message: 'Could not create new product'});
     }
 });
 
@@ -54,8 +56,9 @@ productRouter.put('/:productId', async (req, res) => {
         } else {
             throw Error('Could not found product');
         }
-    } catch {
-        throw Error('Could not update product');
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Could not update product' });
     }
 });
 
@@ -69,7 +72,7 @@ productRouter.delete('/:productId', async (req, res) => {
         } else {
             throw new Error('Could not find product'); 
         }
-    } catch {
+    } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Could not delete product' });
     }

@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const Cart = require('../model/cart.model');
+const Product = require('../../product/model/product.model');
 const User = require('../../user/model/user.model');
 
 const cartRouter = Router();
