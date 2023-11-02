@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const UserService = require("../service/user.service");
 const User = require("../model/user.model");
-//const User = require("../model/user.model");
 
 const userRouter = Router();
 
@@ -12,7 +11,7 @@ userRouter.get('/me', async (req, res) => {
 })
 
 // Obtener un usuario por su userId
-userRouter.get('/userId', async (req, res) => {
+userRouter.get('/:userId', async (req, res) => {
     const otherId = req.params.userId;
     const user = await UserService.getUserById(otherId);
     return res.status(200).json(user);
