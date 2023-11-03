@@ -8,13 +8,13 @@ const cartRouter = Router();
 // Añadir un producto al carrito
 cartRouter.post('/add', async (req, res) => {
     try {
-        const userId = res.locals.context; // Usuario registrado. 
+        const userId = res.locals.context.userId; // Usuario registrado. 
         const { productId, quantity } = req.body;
         
         let cart = await Cart.findOne({ user: userId }); // Busca si ya existe un carrito
         
         if (!cart) {
-            cart = new Cart({ id: userId, items: []}); // Si el carrito no existe, lo crea
+            cart = new Cart({ user: userId, items: [], total: 0, deliveryFee: 0, discount: 0}); // Si el carrito no existe, lo crea
         }
 
         const product = await Product.findById(productId); // Busca el producto por su id
@@ -51,6 +51,8 @@ cartRouter.post('/add', async (req, res) => {
         res.status(500).json({ message: 'Error adding product to cart' });
     }
 });
+
+// TODO: 
 
 // Eliminar un producto del carrito
 cartRouter.delete('/remove', async (req, res) => {
