@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: [true, 'Nombre del producto'],
     },
     price: {
         type: Number,
-        required: true,
+        required: [true, 'Precio del producto'],
     },
     stockQuantity: {
         type: Number,
@@ -17,14 +17,17 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
     },
-    info: {
-        type: String,
+    rating: {
+        type: Number,
+        default: 4.5,
     },
     description: {
         type: String,
+        default: false,
     },
     image: {
         type: String,
+        default: false,
     },
     category: {
         type: String,
