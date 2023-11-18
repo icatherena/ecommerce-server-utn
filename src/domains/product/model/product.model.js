@@ -31,7 +31,7 @@ const productSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ['wardrobe', 'beds', 'mattresses', 'dressers', 'drawers'],
+        enum: ['wardrobe', 'beds', 'mattresses', 'dressers', 'drawers', 'chairs', 'armchairs', ],
         required: true,
     }
 });
