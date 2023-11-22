@@ -3,21 +3,6 @@ const User = require("../model/user.model");
 
 const userRouter = Router();
 
-// Obtener todos los usuarios
-userRouter.get('/', async (req, res) => {
-    try {
-        const users = await User.find({});
-        if (users.length > 0) {
-            return res.status(200).json(users);
-        } else {
-            return res.status(404).json({ message: 'Have not found any users yet. Try again later!'});            
-        }
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'Something went wrong. Internal server error' });
-    }
-});
-
 userRouter.get('/me', async (req, res) => {
     try {
         const { userId } = res.locals.context;
@@ -50,6 +35,21 @@ userRouter.get('/:otherId', async (req, res) => {
         res.status(500).json({ message: 'Something went wrong. Internal server error' });
     }
 })
+
+// Obtener todos los usuarios
+userRouter.get('/', async (req, res) => {
+    try {
+        const users = await User.find({});
+        if (users.length > 0) {
+            return res.status(200).json(users);
+        } else {
+            return res.status(404).json({ message: 'Have not found any users yet. Try again later!'});            
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Something went wrong. Internal server error' });
+    }
+});
 
 // Crear un usuario - SignUp
 /* userRouter.post('/', async (req, res) => {
