@@ -1,5 +1,5 @@
 const express = require('express');
-//const connectDB = require('../db/database');
+const cors = require('cors'); 
 const mongoose = require('mongoose');
 
 const router = require('./router/index');
