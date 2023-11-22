@@ -12,9 +12,9 @@ const authenticated = require("../utils/auth");
 const router = Router();
 
 router.use('/auth', authRouter);
-router.use('/user', /* authenticated, */ userRouter);
+router.use('/user', authenticated, userRouter);
 router.use('/product', productRouter);
-router.use('/cart', /* authenticated, */ cartRouter);
+router.use('/cart', authenticated, cartRouter);
 router.use('/checkout', authenticated, checkoutRouter);
 router.use('/sale', authenticated, saleRouter);
 
