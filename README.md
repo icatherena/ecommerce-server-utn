@@ -5,4 +5,5 @@ Crear una API capaz de establecer conexión con un clúster remoto en MongoDB. I
 Javascript, NodeJs, ExpressJs, BCrypt, JsonWebToken, MongoDB, Mongoose, CORS, Dotenv.
 <h3>Alcances y limitaciones</h3>
 Permitir al usuario crear su usuario e iniciar sesión, autenticar su sesión y añadir productos al carrito, modificarlo o eliminarlo. Obtener una lista de usuarios y usuario mediante su _id. Al usuario logueado, permitirle obtener sus datos, modificarlos y eliminarlos. Crear un producto, modificarlo y eliminarlo. Obtener una lista de todos los productos y un sólo producto a través de su _id. Al usuario logueado, crear un carrito de compra al añadir un primer producto, modificar su carrito y eliminarlo así como también visualizarlo mediante su _id. Realizar el check-out. TODO: autenticar rutas del check-out.
+
 [Deploy]:(https://e-commerce-api-bwhg.onrender.com)
